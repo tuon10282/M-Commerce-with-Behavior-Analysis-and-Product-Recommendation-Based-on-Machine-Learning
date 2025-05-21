@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">finalproject_login_signup</string>
+    <string name="title_email_login">Email :</string>
+    <string name="title_password_login">Password :</string>
+    <string name="title_buton_login">Login</string>
+    <string name="title_buton_register">Signup </string>
+    <string name="title_logo_login">Hello babe, it\'s Calmpuchia</string>
+    <string name="title_recommend">Recommend for you</string>
+    <string name="title_product">Product</string>
+    <string name="title_product_name">Product name</string>
+    <string name="title_add_to_cart">Add to cart</string>
+    <string name="title_buy_now">Buy now</string>
+    <string name="title_description">Description</string>
+</resources>
