@@ -19,5 +19,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "finalproject_login_signup"
+rootProject.name = "CalmpuchiaApp"
 include(":app")

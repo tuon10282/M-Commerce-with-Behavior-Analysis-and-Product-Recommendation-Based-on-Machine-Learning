@@ -1,4 +1,4 @@
-package com.nguyenlethaomy.finalproject_login_signup;
+package com.calmpuchia.userapp;
 
 import org.junit.Test;
 

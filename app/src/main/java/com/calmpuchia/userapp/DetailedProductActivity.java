@@ -1,5 +1,4 @@
-package com.nguyenlethaomy.finalproject_login_signup;
-
+package com.calmpuchia.userapp;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;

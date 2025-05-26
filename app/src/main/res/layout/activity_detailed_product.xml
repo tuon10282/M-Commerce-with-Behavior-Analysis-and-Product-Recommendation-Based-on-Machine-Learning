@@ -81,6 +81,7 @@
 
                     android:padding="16dp"
                     android:scaleType="fitCenter"
+                    app:srcCompat="@mipmap/ic_launcher"
                     tools:src="@tools:sample/backgrounds/scenic" />
             </FrameLayout>
 

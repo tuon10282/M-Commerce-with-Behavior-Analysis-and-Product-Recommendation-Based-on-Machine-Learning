@@ -1,6 +1,5 @@
-package com.nguyenlethaomy.finalproject_login_signup;
+package com.calmpuchia.userapp;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -21,22 +20,29 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class activity_register extends AppCompatActivity {
+public class activity_login extends AppCompatActivity {
     private EditText edtemail, edtpassword;
-    private Button btnregister;
+    private Button btnlogin, btnregister;
     private FirebaseAuth mAuth;
 
-    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_register);
+        setContentView(R.layout.activity_login);
 
         mAuth = FirebaseAuth.getInstance();
         edtemail = findViewById(R.id.edtemail);
         edtpassword = findViewById(R.id.edtpassword);
+        btnlogin = findViewById(R.id.btnlogin);
         btnregister = findViewById(R.id.btnregister);
+
+        btnlogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                login();
+            }
+        });
 
         btnregister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,8 +59,14 @@ public class activity_register extends AppCompatActivity {
     }
 
     private void register() {
-        String email = edtemail.getText().toString().trim();
-        String pass = edtpassword.getText().toString().trim();
+        Intent intent = new Intent(activity_login.this, activity_register.class);
+        startActivity(intent);
+    }
+
+    private void login() {
+        String email, pass;
+        email = edtemail.getText().toString().trim();
+        pass = edtpassword.getText().toString().trim();
 
         if (TextUtils.isEmpty(email)) {
             Toast.makeText(this, "Vui lòng nhập email!", Toast.LENGTH_SHORT).show();
@@ -66,19 +78,17 @@ public class activity_register extends AppCompatActivity {
             return;
         }
 
-        mAuth.createUserWithEmailAndPassword(email, pass)
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            Toast.makeText(getApplicationContext(), "Tạo tài khoản thành công", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(activity_register.this, MainActivity.class);
-                            startActivity(intent);
-                            finish(); // Đóng activity hiện tại
-                        } else {
-                            Toast.makeText(getApplicationContext(), "Tạo tài khoản không thành công", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
+        mAuth.signInWithEmailAndPassword(email, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+                    Toast.makeText(getApplicationContext(), "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(activity_login.this, MainActivity.class);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(getApplicationContext(), "Đăng nhập không thành công", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 }

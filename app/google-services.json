@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "857755107236",
-    "project_id": "login-85b0f",
-    "storage_bucket": "login-85b0f.firebasestorage.app"
+    "project_number": "671019972423",
+    "project_id": "calmpuchia",
+    "storage_bucket": "calmpuchia.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:857755107236:android:2238be52ef7a41822e0b31",
+        "mobilesdk_app_id": "1:671019972423:android:1f59aea9bb56de33347e62",
         "android_client_info": {
-          "package_name": "com.nguyenlethaomy.finalproject_login_signup"
+          "package_name": "com.calmpuchia.userapp"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyD0nSykJrqqlhQ_dPEXn2eaubw_7RP_zUA"
+          "current_key": "AIzaSyDB16DhJnsyOuCNZJ1CjYWKtaWdX7OrM8U"
         }
       ],
       "services": {
