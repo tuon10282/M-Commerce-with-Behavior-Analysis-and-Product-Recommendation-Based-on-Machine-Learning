@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
-    id("com.google.gms.google-services") // Bắt buộc để Firebase nhận google-services.json
+    id("com.google.gms.google-services")
+// Bắt buộc để Firebase nhận google-services.json
 }
 
 android {
@@ -40,6 +41,7 @@ dependencies {
     // ✅ Firebase SDK (không cần version nếu dùng BoM)
     implementation("com.google.firebase:firebase-analytics")
     implementation("com.google.firebase:firebase-auth")
+    implementation("com.google.firebase:firebase-firestore")
 
     // ✅ AndroidX & UI
     implementation(libs.appcompat)
@@ -57,4 +59,10 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+
+    // Up ảnh product
+    implementation("com.squareup.picasso:picasso:2.8")
+    implementation ("com.github.bumptech.glide:glide:4.15.1")
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.15.1")
+
 }

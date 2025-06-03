@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white">
+    android:background="@android:color/white"
+    tools:context=".DetailedProductActivity">
 
     <!-- Toolbar -->
     <com.google.android.material.appbar.AppBarLayout
@@ -12,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/white"
-        app:elevation="0dp">
+        app:elevation="4dp">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
@@ -30,7 +33,6 @@
                     android:layout_height="48dp"
                     android:layout_centerVertical="true"
                     android:background="?attr/selectableItemBackgroundBorderless"
-
                     android:src="@mipmap/ic_back" />
 
                 <TextView
@@ -38,10 +40,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:text="@string/title_product"
+                    android:text="Product Details"
                     android:textColor="@android:color/black"
                     android:textSize="18sp"
-                    android:textStyle="normal" />
+                    android:textStyle="bold" />
 
                 <ImageButton
                     android:id="@+id/btnMoreOptions"
@@ -51,7 +53,6 @@
                     android:layout_centerVertical="true"
                     android:layout_marginEnd="4dp"
                     android:background="?attr/selectableItemBackgroundBorderless"
-
                     android:src="@mipmap/ic_icon_cart" />
             </RelativeLayout>
         </androidx.appcompat.widget.Toolbar>
@@ -71,212 +72,151 @@
             <!-- Product Image -->
             <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
+                android:layout_height="260dp"
                 android:background="#F5F5F5">
 
                 <ImageView
-                    android:id="@+id/ivProductImage"
+                    android:id="@+id/product_image_details"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-
-                    android:padding="16dp"
-                    android:scaleType="fitCenter"
-                    app:srcCompat="@mipmap/ic_launcher"
+                    android:scaleType="centerCrop"
+                    android:contentDescription="Product Image"
                     tools:src="@tools:sample/backgrounds/scenic" />
             </FrameLayout>
 
-            <!-- Product Details Container -->
-            <LinearLayout
+            <!-- Product Name -->
+            <TextView
+                android:id="@+id/product_name_details"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
+                android:padding="16dp"
+                android:text="Product Name"
+                android:textColor="@android:color/black"
+                android:textStyle="bold"
+                android:textSize="24sp" />
 
-                <!-- Product Name -->
-                <TextView
-                    android:id="@+id/tvProductName"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/title_product_name"
-                    android:textColor="@android:color/black"
-                    android:textSize="28sp"
-                    android:textStyle="bold" />
+            <!-- Product Rating (tùy chỉnh nếu bạn muốn) -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginBottom="8dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
 
-                <!-- Rating -->
-                <LinearLayout
+                <RatingBar
+                    android:id="@+id/ratingBar"
+                    style="?android:attr/ratingBarStyleSmall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
+                    android:isIndicator="true"
+                    android:numStars="5"
+                    android:rating="4.5"
+                    android:stepSize="0.1" />
 
-                    <RatingBar
-                        android:id="@+id/ratingBar"
-                        style="?android:attr/ratingBarStyleSmall"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:isIndicator="true"
-                        android:numStars="5"
-                        android:rating="4.8"
-                        android:stepSize="0.1" />
-
-                    <TextView
-                        android:id="@+id/tvRatingValue"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:text="4.8"
-                        android:textColor="@android:color/black"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:id="@+id/tvRatingCount"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="4dp"
-                        android:text="(245)"
-                        android:textColor="#757575"
-                        android:textSize="16sp" />
-                </LinearLayout>
-
-                <!-- Price -->
-                <LinearLayout
+                <TextView
+                    android:id="@+id/tv_rating_value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/tvPrice"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="$39.99"
-                        android:textColor="@android:color/black"
-                        android:textSize="28sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/tvDiscount"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:text="-20%"
-                        android:textColor="#616161"
-                        android:textSize="20sp" />
-                </LinearLayout>
-
-                <!-- Color Selection -->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
-                    android:text="Color"
-                    android:textColor="@android:color/black"
-                    android:textSize="18sp" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:id="@+id/colorRed"
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
-                        android:layout_marginEnd="12dp"
-                        app:srcCompat="@color/design_default_color_error" />
-
-                    <ImageView
-                        android:id="@+id/colorBlue"
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
-                        android:layout_marginEnd="12dp"
-                        app:srcCompat="@color/design_default_color_primary_variant" />
-
-                    <ImageView
-                        android:id="@+id/colorBlack"
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
-                        app:srcCompat="@color/design_default_color_secondary_variant" />
-                </LinearLayout>
-
-                <!-- Buttons -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
-                    android:orientation="horizontal">
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/btnAddToCart"
-                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
-                        android:layout_weight="1"
-                        android:paddingTop="12dp"
-                        android:paddingBottom="12dp"
-                        android:text="@string/title_add_to_cart"
-                        android:textSize="16sp" />
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/btnBuyNow"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:layout_weight="1"
-                        android:backgroundTint="@android:color/black"
-                        android:paddingTop="12dp"
-                        android:paddingBottom="12dp"
-                        android:text="@string/title_buy_now"
-                        android:textColor="@android:color/white"
-                        android:textSize="16sp" />
-                </LinearLayout>
-
-                <!-- Description -->
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="32dp"
-                    android:text="@string/title_description"
-                    android:textColor="@android:color/black"
-                    android:textSize="22sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/tvDescription"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod"
-                    android:textColor="#333333"
-                    android:textSize="16sp" />
-
-                <!-- Related Products -->
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="32dp"
-                    android:text="Related Products"
-                    android:textColor="@android:color/black"
-                    android:textSize="22sp"
-                    android:textStyle="bold" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvRelatedProducts"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:clipToPadding="false"
-                    android:orientation="horizontal"
-                    android:paddingTop="8dp"
-                    android:paddingBottom="8dp"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    tools:itemCount="4"
-                    tools:listitem="" />
+                    android:layout_marginStart="8dp"
+                    android:text="4.5 (120 reviews)"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="14sp" />
             </LinearLayout>
+
+            <!-- Product Price -->
+            <TextView
+                android:id="@+id/product_price_details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:text="$49.99"
+                android:textColor="@android:color/holo_red_dark"
+                android:textStyle="bold"
+                android:textSize="28sp" />
+
+            <!-- Product Description -->
+            <TextView
+                android:id="@+id/product_description_details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:text="Product description goes here. This is a detailed explanation about the product features, materials, and other info."
+                android:textColor="#555555"
+                android:textSize="16sp" />
+
+            <!-- Quantity Selector -->
+            <LinearLayout
+                android:id="@+id/number_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <ImageButton
+                    android:id="@+id/btn_decrease"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@mipmap/ic_minus"
+                    android:contentDescription="Decrease quantity" />
+
+                <TextView
+                    android:id="@+id/number_text"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:gravity="center"
+                    android:text="1"
+                    android:textSize="18sp"
+                    android:textColor="@android:color/black" />
+
+                <ImageButton
+                    android:id="@+id/btn_increase"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@mipmap/ic_plus"
+                    android:contentDescription="Increase quantity" />
+            </LinearLayout>
+
+            <!-- Add to Cart Button -->
+            <Button
+                android:id="@+id/pd_add_to_cart_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:text="Add to Cart"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:backgroundTint="@color/purple_500"
+                android:textColor="@android:color/white" />
+            <!-- Related Products Section -->
+            <TextView
+                android:id="@+id/related_products_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="8dp"
+                android:text="Related Products"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/black" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/related_products_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:clipToPadding="false"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:scrollbars="horizontal"
+                android:orientation="horizontal" />
+
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

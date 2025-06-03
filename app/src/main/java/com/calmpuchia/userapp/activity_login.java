@@ -83,7 +83,7 @@ public class activity_login extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
                     Toast.makeText(getApplicationContext(), "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(activity_login.this, MainActivity.class);
+                    Intent intent = new Intent(activity_login.this, ProductCategoriesActivity.class);
                     startActivity(intent);
                 } else {
                     Toast.makeText(getApplicationContext(), "Đăng nhập không thành công", Toast.LENGTH_SHORT).show();

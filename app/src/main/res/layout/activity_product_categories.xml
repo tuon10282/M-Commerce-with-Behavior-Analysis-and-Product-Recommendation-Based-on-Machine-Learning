@@ -1,215 +1,62 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF">
+    android:orientation="vertical"
+    android:background="#FFFFFF"
+    android:padding="12dp">
 
-    <!-- Thanh tìm kiếm -->
+    <!-- Search Bar -->
     <LinearLayout
-        android:id="@+id/topBar"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="8dp"
         android:background="#ff6750a4"
+        android:padding="8dp"
         android:gravity="center_vertical">
 
-        <ImageView
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:src="@mipmap/ic_logo" />
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@android:color/transparent"
+            android:src="@mipmap/ic_back"
+            android:contentDescription="Back" />
 
         <EditText
+            android:id="@+id/edtSearch"
             android:layout_width="0dp"
+            android:layout_height="40dp"
             android:layout_weight="1"
-            android:layout_height="36dp"
-            android:hint="Search..."
-            android:background="#FFFFFF"
-            android:paddingStart="12dp"
-            android:textSize="14sp"
+            android:background="@color/design_default_color_background"
+            android:hint="Search"
+            android:drawableStart="@android:drawable/ic_menu_search"
+            android:drawablePadding="8dp"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="8dp"
+            android:textColorHint="#888" />
+
+        <ImageView
+            android:id="@+id/btnCart"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp" />
-
-        <!-- Nút tìm kiếm -->
-        <ImageButton
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:src="@android:drawable/ic_menu_search"
-            android:background="@android:color/transparent"
-            android:contentDescription="Search"
-            android:layout_marginEnd="8dp" />
-
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@mipmap/ic_scan_qrcode"
-            android:layout_marginEnd="12dp" />
-
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@mipmap/ic_location"
-            android:layout_marginEnd="12dp" />
-
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@mipmap/ic_package" />
+            android:src="@mipmap/ic_cart2"
+            android:contentDescription="Cart" />
     </LinearLayout>
 
-    <!-- Nội dung chính -->
-    <LinearLayout
-        android:layout_below="@id/topBar"
+    <!-- Divider -->
+    <View
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:layout_height="1dp"
+        android:background="#DDDDDD"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="8dp" />
 
-        <!-- Danh mục bên trái -->
-        <ScrollView
-            android:layout_width="100dp"
-            android:layout_height="match_parent"
-            android:background="#F5F5F5">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="Cate A"
-                    android:padding="12dp"
-                    android:textSize="14sp"
-                    android:background="#FFFFFF" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="Cate B"
-                    android:padding="12dp"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="Cate C"
-                    android:padding="12dp"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="Cate D"
-                    android:padding="12dp"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="Cate E"
-                    android:padding="12dp"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="Cate F"
-                    android:padding="12dp"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="Cate G"
-                    android:padding="12dp"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="Cate H"
-                    android:padding="12dp"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="Cate I"
-                    android:padding="12dp"
-                    android:textSize="14sp" />
-
-            </LinearLayout>
-        </ScrollView>
-
-        <!-- Danh mục con bên phải -->
-        <ScrollView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:padding="8dp">
-
-            <GridLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:columnCount="3"
-                android:orientation="horizontal"
-                android:useDefaultMargins="true"
-                android:alignmentMode="alignMargins">
-
-                <!-- Mỗi ô danh mục con -->
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:padding="8dp">
-
-                    <ImageView
-                        android:layout_width="64dp"
-                        android:layout_height="64dp"
-                        android:src="@mipmap/ic_cate_a1" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Cate A-1"
-                        android:textSize="12sp"
-                        android:gravity="center"
-                        android:layout_marginTop="4dp" />
-                </LinearLayout>
-
-                <!-- Copy block LinearLayout trên để thêm danh mục khác -->
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:padding="8dp">
-
-                    <ImageView
-                        android:layout_width="64dp"
-                        android:layout_height="64dp"
-                        android:src="@mipmap/ic_cate_a2" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Cate A-2"
-                        android:textSize="12sp"
-                        android:gravity="center"
-                        android:layout_marginTop="4dp" />
-                </LinearLayout>
-
-            </GridLayout>
-        </ScrollView>
-    </LinearLayout>
-</RelativeLayout>
+    <!-- Dynamic Category List -->
+    <LinearLayout
+        android:id="@+id/categoryLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" />
+</LinearLayout>
