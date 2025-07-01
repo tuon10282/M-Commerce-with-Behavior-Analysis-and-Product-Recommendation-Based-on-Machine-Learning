@@ -54,7 +54,6 @@ public class MyAccountActivity extends AppCompatActivity {
         // Load dữ liệu
         loadUserInfo();
         loadCartBadge();
-        setupOrderListener();
 
         // Setup click listeners
         setupClickListeners();
@@ -207,7 +206,7 @@ public class MyAccountActivity extends AppCompatActivity {
                         String imageUrl = documentSnapshot.getString("image");
 
                         // Lấy số loyalty_points (coins) - mặc định là 0 nếu chưa có
-                        Long loyaltyPoints = documentSnapshot.getLong("loyaltyPoints");
+                        Long loyaltyPoints = documentSnapshot.getLong("loyalty_points");
                         if (loyaltyPoints == null) loyaltyPoints = 0L;
 
                         // Gán dữ liệu vào views
@@ -269,72 +268,6 @@ public class MyAccountActivity extends AppCompatActivity {
                 });
     }
 
-    private void setupOrderListener() {
-        // Lắng nghe các đơn hàng hoàn thành để cộng loyalty points
-        orderListener = db.collection("orders")
-                .whereEqualTo("user_id", Long.parseLong(userId.replaceAll("[^0-9]", "")))
-                .addSnapshotListener((queryDocumentSnapshots, e) -> {
-                    if (e != null) {
-                        return;
-                    }
-
-                    if (queryDocumentSnapshots != null) {
-                        for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
-                            String status = document.getString("status");
-                            Boolean coinsAdded = document.getBoolean("coins_added");
-
-                            // Nếu đơn hàng hoàn thành và chưa cộng coins
-                            if ("delivered".equals(status) && (coinsAdded == null || !coinsAdded)) {
-                                addCoinsForCompletedOrder(document.getId());
-                            }
-                        }
-                    }
-                });
-    }
-
-    private void addCoinsForCompletedOrder(String orderId) {
-        // Lấy số loyalty_points hiện tại
-        db.collection("users").document(userId)
-                .get()
-                .addOnSuccessListener(documentSnapshot -> {
-                    if (documentSnapshot.exists()) {
-                        Long currentCoins = documentSnapshot.getLong("loyaltyPoints");
-                        if (currentCoins == null) currentCoins = 0L;
-
-                        // Cộng thêm 500 coins
-                        long newCoins = currentCoins + 500;
-
-                        // Cập nhật loyalty_points trong database
-                        Map<String, Object> updates = new HashMap<>();
-                        updates.put("loyaltyPoints", newCoins);
-
-                        db.collection("users").document(userId)
-                                .update(updates)
-                                .addOnSuccessListener(aVoid -> {
-                                    // Đánh dấu đơn hàng đã được cộng coins
-                                    Map<String, Object> orderUpdate = new HashMap<>();
-                                    orderUpdate.put("coins_added", true);
-
-                                    db.collection("orders").document(orderId)
-                                            .update(orderUpdate);
-
-                                    Toast.makeText(MyAccountActivity.this,
-                                            "Chúc mừng! Bạn được cộng 500 coins cho đơn hàng hoàn thành!",
-                                            Toast.LENGTH_LONG).show();
-                                })
-                                .addOnFailureListener(e -> {
-                                    Toast.makeText(MyAccountActivity.this,
-                                            "Lỗi khi cập nhật coins",
-                                            Toast.LENGTH_SHORT).show();
-                                });
-                    }
-                })
-                .addOnFailureListener(e -> {
-                    Toast.makeText(MyAccountActivity.this,
-                            "Lỗi khi lấy thông tin user",
-                            Toast.LENGTH_SHORT).show();
-                });
-    }
 
     @Override
     protected void onResume() {
