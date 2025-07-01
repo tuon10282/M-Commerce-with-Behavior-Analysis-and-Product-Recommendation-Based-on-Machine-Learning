@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">finalproject_login_signup</string>
+    <string name="app_name">CalmpuchiaApp</string>
     <string name="title_email_login">Email :</string>
     <string name="title_password_login">Password :</string>
     <string name="title_buton_login">Login</string>
@@ -11,4 +11,8 @@
     <string name="title_add_to_cart">Add to cart</string>
     <string name="title_buy_now">Buy now</string>
     <string name="title_description">Description</string>
+    <string name="title_name">Name</string>
+    <string name="title_phone">Phone</string>
+    <string name="title_save_login_info">Save Login Info ?</string>
+    <string name="title_view_all">View all</string>
 </resources>

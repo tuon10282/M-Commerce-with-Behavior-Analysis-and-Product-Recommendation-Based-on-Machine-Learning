@@ -42,6 +42,11 @@ dependencies {
     implementation("com.google.firebase:firebase-analytics")
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-firestore")
+    implementation ("com.google.firebase:firebase-messaging")
+
+    // Google Play Services cho GPS
+    implementation ("com.google.android.gms:play-services-location:21.0.1")
+
 
     // ✅ AndroidX & UI
     implementation(libs.appcompat)
@@ -62,7 +67,20 @@ dependencies {
 
     // Up ảnh product
     implementation("com.squareup.picasso:picasso:2.8")
+    implementation ("com.google.firebase:firebase-messaging:23.2.1")
     implementation ("com.github.bumptech.glide:glide:4.15.1")
     annotationProcessor ("com.github.bumptech.glide:compiler:4.15.1")
+    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+    // Converter JSON => Java object
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+    // Nếu cần log request (debug)
+    implementation ("com.squareup.okhttp3:logging-interceptor:4.12.0")
+    implementation ("com.squareup.retrofit2:converter-scalars:2.9.0")
+    // UCrop for image cropping
+    implementation ("com.vanniktech:android-image-cropper:4.5.0")
+
+
+
 
 }

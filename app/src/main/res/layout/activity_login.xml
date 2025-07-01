@@ -1,96 +1,172 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center_horizontal"
-    android:padding="16dp"
-    tools:context=".activity_login">
+    android:background="#FAF9F6">
 
-    <!-- 🖼️ Hình ảnh ở trên cùng -->
-    <ImageView
-        android:id="@+id/imgLogo"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:src="@mipmap/ic_logo_login"
-        app:srcCompat="@mipmap/ic_logo_login" /> <!-- đổi thành ảnh bạn muốn -->
-    android:layout_marginBottom="8dp"
-    android:contentDescription="App Logo" />
-
-    <!-- 📝 Dòng chữ Welcome -->
-    <TextView
-        android:id="@+id/tvWelcome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:text="@string/title_logo_login"
-        android:textColor="#333333"
-        android:textSize="18sp"
-        android:textStyle="bold" />
-
-    <!-- 📨 Email -->
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/afacad_semibold"
-        android:text="@string/title_email_login"
-        android:textSize="24sp"
-        android:textStyle="bold" />
-
-    <EditText
-        android:id="@+id/edtemail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Enter your email"
-        android:inputType="text" />
-
-    <!-- 🔒 Password -->
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/title_password_login"
-        android:textSize="20sp"
-        android:textStyle="bold" />
-
-    <EditText
-        android:id="@+id/edtpassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Enter your password"
-        android:inputType="numberPassword" />
-
-    <!-- 👥 Các nút đăng nhập / đăng ký -->
     <LinearLayout
+        android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="16dp">
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:padding="16dp"
+        tools:context=".activity_login">
 
-        <Button
-            android:id="@+id/btnlogin"
-            android:layout_width="0dp"
+        <!-- Logo Section Card -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/title_buton_login"
-            android:textAlignment="center"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:layout_marginBottom="24dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="4dp"
+            app:cardBackgroundColor="#FFFFFF">
 
-        <Button
-            android:id="@+id/btnregister"
-            android:layout_width="0dp"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center_horizontal"
+                android:padding="24dp">
+
+                <ImageView
+                    android:id="@+id/imgLogo"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_marginBottom="16dp"
+                    android:contentDescription="App Logo"
+                    android:src="@mipmap/ic_logo"/>
+
+                <TextView
+                    android:id="@+id/tvWelcome"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title_logo_login"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="#3C3C3B" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Login Form Card -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/title_buton_register"
-            android:textAlignment="center"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:layout_marginBottom="24dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="2dp"
+            app:cardBackgroundColor="#FFFFFF">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <!-- Email Section -->
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/afacad_semibold"
+                    android:text="@string/title_email_login"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="#3C3C3B"
+                    android:layout_marginBottom="8dp" />
+
+                <EditText
+                    android:id="@+id/edtemail"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:hint="Enter your email"
+                    android:inputType="textEmailAddress"
+                    android:paddingHorizontal="16dp"
+                    android:textColorHint="#666666"
+                    android:textColor="#3C3C3B"
+                    android:layout_marginBottom="16dp" />
+
+                <!-- Password Section -->
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/afacad_semibold"
+                    android:text="@string/title_password_login"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="#3C3C3B"
+                    android:layout_marginBottom="8dp" />
+
+                <EditText
+                    android:id="@+id/edtpassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:hint="Enter your password"
+                    android:inputType="textPassword"
+                    android:paddingHorizontal="16dp"
+                    android:textColorHint="#666666"
+                    android:textColor="#3C3C3B"
+                    android:layout_marginBottom="16dp" />
+
+                <!-- Save Login Checkbox -->
+                <CheckBox
+                    android:id="@+id/chkSaveLogin"
+                    android:layout_width="342dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="24dp"
+                    android:text="@string/title_save_login_info"
+                    android:textColor="#3C3C3B"
+                    android:textSize="14sp" />
+
+                <!-- Login Button -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnlogin"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:text="@string/title_buton_login"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:backgroundTint="#D7A7A3"
+                    app:cornerRadius="8dp"
+                    android:layout_marginBottom="12dp" />
+
+                <!-- Forgot Password Link -->
+                <TextView
+                    android:id="@+id/tvForgotPassword"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="16dp"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:fontFamily="@font/afacad_semibold"
+                    android:padding="8dp"
+                    android:text="Forgot Password"
+                    android:textColor="#D7A7A3"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <!-- Register Button -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnregister"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:text="@string/title_buton_register"
+                    android:textColor="#D7A7A3"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:backgroundTint="@android:color/transparent"
+                    app:strokeColor="#D7A7A3"
+                    app:strokeWidth="2dp"
+                    app:cornerRadius="8dp" />
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
     </LinearLayout>
-</LinearLayout>
+</ScrollView>

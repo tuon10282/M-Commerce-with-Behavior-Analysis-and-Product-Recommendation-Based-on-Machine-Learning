@@ -3,9 +3,6 @@ package com.calmpuchia.userapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -13,12 +10,22 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
+import com.calmpuchia.userapp.adapters.CategoryAdapter;
+import com.calmpuchia.userapp.models.Category;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ProductCategoriesActivity extends AppCompatActivity {
+
+    private RecyclerView recyclerView;
+    private CategoryAdapter categoryAdapter;
+    private List<Category> categoryList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +39,22 @@ public class ProductCategoriesActivity extends AppCompatActivity {
             return insets;
         });
 
+        setupRecyclerView();
         loadCategories();
+    }
+
+    private void setupRecyclerView() {
+        recyclerView = findViewById(R.id.recyclerView);
+        categoryList = new ArrayList<>();
+        categoryAdapter = new CategoryAdapter(this, categoryList);
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(categoryAdapter);
+
+        // Set click listener
+        categoryAdapter.setOnCategoryClickListener(category -> {
+            openProductList(category.getCategoryId());
+        });
     }
 
     private void loadCategories() {
@@ -40,58 +62,20 @@ public class ProductCategoriesActivity extends AppCompatActivity {
         db.collection("categories").get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
-                        LinearLayout layout = findViewById(R.id.categoryLayout);
-                        layout.removeAllViews();
+                        categoryList.clear();
 
                         for (QueryDocumentSnapshot document : task.getResult()) {
                             String name = document.getString("name");
-
-                            // Ở đây "emoji" là link ảnh, ví dụ: https://...jpg
                             String iconUrl = document.getString("emoji");
 
                             Object rawCategoryId = document.get("category_id");
                             String categoryId = (rawCategoryId != null) ? rawCategoryId.toString() : "";
 
-                            // Tạo layout con cho từng item danh mục
-                            LinearLayout itemLayout = new LinearLayout(this);
-                            itemLayout.setOrientation(LinearLayout.HORIZONTAL);
-                            itemLayout.setPadding(24, 20, 24, 20);
-                            itemLayout.setBackgroundResource(android.R.drawable.list_selector_background);
-                            itemLayout.setClickable(true);
-                            itemLayout.setOnClickListener(v -> openProductList(categoryId));
-
-                            // ImageView cho icon ảnh
-                            ImageView iconView = new ImageView(this);
-                            int iconSize = (int) (48 * getResources().getDisplayMetrics().density); // 48dp
-                            LinearLayout.LayoutParams iconParams = new LinearLayout.LayoutParams(iconSize, iconSize);
-                            iconParams.setMargins(0, 0, 24, 0); // margin phải cho cách text
-                            iconView.setLayoutParams(iconParams);
-
-                            if (iconUrl != null && !iconUrl.isEmpty()) {
-                                Glide.with(this)
-                                        .load(iconUrl)
-                                        .centerCrop()
-                                        .into(iconView);
-                            } else {
-                                // Nếu không có icon, có thể đặt icon mặc định hoặc ẩn
-                                iconView.setImageResource(android.R.drawable.ic_menu_gallery);
-                            }
-
-                            // TextView cho tên category
-                            TextView tv = new TextView(this);
-                            tv.setText(name != null ? name : "");
-                            tv.setTextSize(16);
-                            tv.setLayoutParams(new LinearLayout.LayoutParams(
-                                    LinearLayout.LayoutParams.WRAP_CONTENT,
-                                    LinearLayout.LayoutParams.WRAP_CONTENT));
-
-                            // Thêm vào layout item: icon + tên
-                            itemLayout.addView(iconView);
-                            itemLayout.addView(tv);
-
-                            // Thêm itemLayout vào layout chính
-                            layout.addView(itemLayout);
+                            Category category = new Category(categoryId, name, iconUrl);
+                            categoryList.add(category);
                         }
+
+                        categoryAdapter.updateCategories(categoryList);
                     } else {
                         Log.e("Firestore", "Lỗi tải danh mục", task.getException());
                         Toast.makeText(this, "Không thể tải danh mục", Toast.LENGTH_SHORT).show();

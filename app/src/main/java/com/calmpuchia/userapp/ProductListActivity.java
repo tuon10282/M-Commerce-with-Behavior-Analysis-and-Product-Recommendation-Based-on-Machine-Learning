@@ -1,5 +1,6 @@
 package com.calmpuchia.userapp;
 
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.content.Intent;
 import android.util.Log;
@@ -7,7 +8,9 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -48,7 +51,15 @@ public class ProductListActivity extends AppCompatActivity {
 
         productList = new ArrayList<>();
         adapter = new ProductAdapter(this, productList);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 2)); // 2 cột
+        // Optional: Thêm khoảng cách giữa items
+        recyclerView.addItemDecoration(new RecyclerView.ItemDecoration() {
+            @Override
+            public void getItemOffsets(@NonNull Rect outRect, @NonNull View view,
+                                       @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
+                outRect.set(4, 4, 4, 4); // margin 4dp cho mỗi item
+            }
+        });
         recyclerView.setAdapter(adapter);
 
         // 3. Kết nối Firestore

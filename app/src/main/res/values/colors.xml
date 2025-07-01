@@ -1,6 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
-    <color name="purple_500">#6200EE</color>
+    <color name="bgColor">#D7A7A3</color>
+        <!-- Primary Colors -->
+        <color name="primary">#D7A7A3</color>
+        <color name="primary_dark">#C4918D</color>
+        <color name="primary_light">#E4C3C0</color>
+
+        <!-- Secondary Colors -->
+        <color name="secondary">#B8907F</color>
+        <color name="secondary_dark">#A17E6B</color>
+        <color name="secondary_light">#CBA393</color>
+
+        <!-- Gray Colors -->
+        <color name="gray">#666666</color>
+        <color name="gray_light">#CCCCCC</color>
+        <color name="gray_dark">#333333</color>
+        <color name="gray_medium">#999999</color>
+
+        <!-- Background Colors -->
+        <color name="background">#FAF9F6</color>
+        <color name="background_light">#FFFFFF</color>
+        <color name="background_dark">#F0F0F0</color>
+
+        <!-- Text Colors -->
+        <color name="text_primary">#3C3C3B</color>
+        <color name="text_secondary">#666666</color>
+        <color name="text_hint">#999999</color>
+
+        <!-- Status Colors -->
+        <color name="success">#4CAF50</color>
+        <color name="error">#F44336</color>
+        <color name="warning">#FF9800</color>
+        <color name="info">#2196F3</color>
+
+        <!-- Common Colors -->
+        <color name="white">#FFFFFF</color>
+        <color name="black">#000000</color>
+        <color name="transparent">#00000000</color>
+
+        <!-- Button Colors -->
+        <color name="button_disabled">#CCCCCC</color>
+        <color name="button_pressed">#C4918D</color>
+
+        <!-- Border Colors -->
+        <color name="border">#E0E0E0</color>
+        <color name="border_dark">#CCCCCC</color>
+        <color name="price_discount">#E53935</color>
+
 </resources>
